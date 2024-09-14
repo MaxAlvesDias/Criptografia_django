@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criptografia</title>
+  <style>
+    .lock {
+      width: 100px;
+      height: 150px;
+      background-color: grey;
+      border-radius: 10px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .lock:before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: 15px;
+      width: 70px;
+      height: 50px;
+      background-color: grey;
+      border-radius: 50% 50% 0 0;
+    }
+
+    .shackle {
+      width: 70px;
+      height: 50px;
+      border-radius: 50% 50% 0 0;
+      background-color: lightgrey;
+      position: absolute;
+      top: -50px;
+      left: 15px;
+      transition: transform 1s;
+    }
+
+    .locked .shackle {
+      transform: rotate(0deg);
+    }
+
+    .unlocked .shackle {
+      transform: rotate(45deg);
+    }
+  </style>
+</head>
+<body>
+  <h1>Criptografia</h1>
+  <textarea id="inputText" placeholder="Digite seu texto"></textarea>
+  <button onclick="encrypt()">Criptografar</button>
+  
+  <div class="lock locked" id="lockIcon">
+    <div class="shackle"></div>
+  </div>
+
+  <p id="outputText"></p>
+
+  <script>
+    function encrypt() {
+      let input = document.getElementById('inputText').value;
+      // Exemplo simples de criptografia (substituir por algo mais complexo)
+      let encryptedText = btoa(input); 
+      
+      // Animação do cadeado
+      let lockIcon = document.getElementById('lockIcon');
+      lockIcon.classList.remove('unlocked');
+      lockIcon.classList.add('locked');
+
+      document.getElementById('outputText').textContent = encryptedText;
+    }
+
+    function decrypt() {
+      let input = document.getElementById('inputText').value;
+      let decryptedText = atob(input); // Descriptografar usando base64
+      
+      // Animação do cadeado destrancando
+      let lockIcon = document.getElementById('lockIcon');
+      lockIcon.classList.remove('locked');
+      lockIcon.classList.add('unlocked');
+
+      document.getElementById('outputText').textContent = decryptedText;
+    }
+  </script>
+</body>
+</html>

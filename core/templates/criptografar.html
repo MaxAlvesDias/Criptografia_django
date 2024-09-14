@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+   <head>
+      <!-- basic metas -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>criptografar</title>
+      <!-- bootstrap css -->
+      <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+      <!-- other styles -->
+      <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+   </head>
+   <body>
+      <!-- header section -->
+      <div class="header_section">
+         <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="index.html">
+               <img src="{% static 'images/logociber.webp' %}" width="100" height="100">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+               <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                     <a class="nav-link" href="{% url 'index' %}">Home</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="{% url 'criptografar' %}">Criptografar</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="{% url 'descriptografar' %}">Descriptografar</a>
+                  </li>
+               </ul>
+            </div>
+         </nav>
+      </div>
+      
+      <!-- contact section -->
+      <div class="contact_section layout_padding">
+         <div class="container">
+            <div class="contact_section_2">
+               <div class="row">
+                  <!-- Formulário de criptografia -->
+                  <div class="col-md-6">
+                     <h1 class="contact_taital">Digite seu Texto</h1>
+                     <form method="POST">
+                        {% csrf_token %}
+                        <textarea class="massage-bt" placeholder="Digite o texto" rows="5" id="texto" name="texto"></textarea>
+                        <button type="submit" class="btn btn-primary">Criptografar</button>
+                     </form>
+                  </div>
+
+                  <!-- Resultado da criptografia -->
+                  <div class="col-md-6">
+                     <h1 class="contact_taital">Texto Criptografado</h1>
+                     <textarea class="massage-bt" placeholder="Texto criptografado" rows="5" readonly>{{ resultado }}</textarea>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- copyright section start -->
+      <div class="copyright_section">
+         <div class="container">
+            <p class="copyright_text">Este site foi desenvolvido para a aula de auditoria e segurança</p>
+         </div>
+      </div>
+      <!-- copyright section end -->
+      
+      <!-- Javascript files-->
+      <script src="{% static 'js/jquery.min.js' %}"></script>
+      <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+   </body>
+</html>
